@@ -41,15 +41,26 @@ export function ProductsScreen() {
 
   const categories = ['Todos', ...Array.from(new Set(products.map(p => p.category)))];
   
+  // Função para normalizar texto (remove acentos)
+  const normalizeText = (text: string) => {
+    return text
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+  };
+  
   // Filtrar por categoria E busca
   const filteredProducts = products.filter(p => {
     if (!p.active) return false;
     
     const matchesCategory = selectedCategory === 'Todos' || p.category === selectedCategory;
+    
+    // Normaliza a busca e os textos para comparação sem acentos
+    const normalizedQuery = normalizeText(searchQuery);
     const matchesSearch = searchQuery === '' || 
-      p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.description?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.category.toLowerCase().includes(searchQuery.toLowerCase());
+      normalizeText(p.name).includes(normalizedQuery) ||
+      normalizeText(p.description || '').includes(normalizedQuery) ||
+      normalizeText(p.category).includes(normalizedQuery);
     
     return matchesCategory && matchesSearch;
   });
