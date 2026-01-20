@@ -116,6 +116,8 @@ export function HomeScreen() {
                     whileHover={{ y: -5, scale: 1.02 }}
                     className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all p-4 border-2 border-purple-200 cursor-pointer group relative overflow-hidden"
                     onClick={() => {
+                      addToCart(combo);
+                      toast.success(`${combo.name} adicionado!`, { duration: 1500 });
                       setSelectedCategory('Combos');
                       setCurrentScreen('products');
                     }}
@@ -155,6 +157,8 @@ export function HomeScreen() {
                         className="bg-green-500 hover:bg-green-600 text-white rounded-full p-2 shadow-lg"
                         onClick={(e) => {
                           e.stopPropagation();
+                          addToCart(combo);
+                          toast.success(`${combo.name} adicionado!`, { duration: 1500 });
                           setSelectedCategory('Combos');
                           setCurrentScreen('products');
                         }}
@@ -199,6 +203,8 @@ export function HomeScreen() {
                     whileHover={{ y: -5 }}
                     className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all p-3 cursor-pointer group relative"
                     onClick={() => {
+                      addToCart(product);
+                      toast.success(`${product.name} adicionado!`, { duration: 1500 });
                       setSelectedCategory(product.category);
                       setCurrentScreen('products');
                     }}
@@ -236,6 +242,8 @@ export function HomeScreen() {
                         className="bg-green-500 rounded-full p-1.5"
                         onClick={(e) => {
                           e.stopPropagation();
+                          addToCart(product);
+                          toast.success(`${product.name} adicionado!`, { duration: 1500 });
                           setSelectedCategory(product.category);
                           setCurrentScreen('products');
                         }}
