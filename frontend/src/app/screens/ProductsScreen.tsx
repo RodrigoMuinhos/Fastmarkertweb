@@ -637,7 +637,7 @@ export function ProductsScreen() {
           onKeyPress={handleKeyPress}
           onClose={() => setShowKeyboard(false)}
           inputName="search"
-          activeFieldLabel="Buscar produtos"
+          activeFieldLabel="Buscar produtos por nome ou categoria"
         />
       )}
     </div>
