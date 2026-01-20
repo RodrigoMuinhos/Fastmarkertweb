@@ -1,0 +1,35 @@
+FASTMARKET KIOSK — AVISO E TERMOS (LGPD)
+
+Este documento descreve, de forma resumida, como o aplicativo “FastMarket Kiosk” trata dados pessoais. Ele não substitui aconselhamento jurídico.
+
+1) Base legal e referência
+O tratamento de dados pessoais observado por este aplicativo deve respeitar a Lei Geral de Proteção de Dados Pessoais (LGPD) — Lei nº 13.709/2018.
+
+2) Dados pessoais que podem ser utilizados
+Dependendo do fluxo do aplicativo, podem ser utilizados:
+- CPF
+- Telefone/WhatsApp
+- Nome (quando cadastrado)
+- Dados de compra (itens, valores, data/hora) vinculados a um identificador de cliente
+
+3) Finalidades
+Os dados são utilizados para:
+- Identificar o cliente e consultar/cadastrar participação (ex.: Fast+)
+- Calcular e registrar pontos/recompensas
+- Emitir/registrar transações e histórico de compras
+- Enviar confirmação via WhatsApp (quando disponível no fluxo)
+
+4) Armazenamento e segurança
+- Os dados podem ser armazenados em banco de dados (ex.: PostgreSQL/Neon) configurado pelo operador.
+- Recomenda-se restringir acesso ao banco, usar credenciais seguras e rotacionar senhas.
+
+5) Compartilhamento
+O aplicativo pode integrar com serviços externos (ex.: provedor do banco de dados, mensageria/WhatsApp quando implementado). O operador é responsável por avaliar contratos e bases legais aplicáveis.
+
+6) Direitos do titular
+O titular possui direitos previstos na LGPD (ex.: confirmação de tratamento, acesso, correção, anonimização, portabilidade, eliminação quando aplicável, informação sobre compartilhamento, revogação de consentimento quando aplicável).
+
+7) Controlador/Operador
+O responsável pela operação do totem (empresa/loja) normalmente atua como Controlador dos dados coletados no contexto do atendimento. Defina um canal de contato e políticas internas.
+
+Ao prosseguir com a instalação/uso, você declara que compreende e concorda com estes termos e que é responsável por configurar o ambiente (banco de dados/infra) de forma segura e conforme a LGPD.

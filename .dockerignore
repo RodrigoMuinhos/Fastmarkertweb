@@ -1,0 +1,21 @@
+node_modules
+**/node_modules
+
+dist
+.dist
+.vite
+
+release
+mobile
+
+.git
+.gitignore
+.DS_Store
+
+# backend build outputs (only relevant when context is project root)
+backend/target
+backend/.mvn
+backend/.idea
+backend/.classpath
+backend/.project
+backend/.settings
