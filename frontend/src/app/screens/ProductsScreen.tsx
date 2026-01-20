@@ -5,6 +5,7 @@ import { Button } from '../components/fastmarket/Button';
 import { Badge } from '../components/fastmarket/Badge';
 import { PromoCarousel } from '../components/fastmarket/PromoCarousel';
 import { ProductDetailsModal } from '../components/fastmarket/ProductDetailsModal';
+import { VirtualKeyboard } from '../components/fastmarket/VirtualKeyboard';
 import { Plus, Minus, ShoppingCart, Package, Sparkles, ChevronLeft, ChevronRight, Home, TrendingUp, Leaf, X, Droplets, Coffee, Zap, IceCream, Cookie, Pizza, Wine, Sandwich } from 'lucide-react';
 import { useFastMarket } from '../context/FastMarketContext';
 import { Product } from '../context/FastMarketContext';
@@ -35,6 +36,8 @@ export function ProductsScreen() {
   const [selectedProduct, setSelectedProduct] = React.useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [searchQuery, setSearchQuery] = React.useState('');
+  const [showKeyboard, setShowKeyboard] = React.useState(false);
+  const searchInputRef = React.useRef<HTMLInputElement>(null);
 
   const categories = ['Todos', ...Array.from(new Set(products.map(p => p.category)))];
   
@@ -116,6 +119,18 @@ export function ProductsScreen() {
   const handleOpenDetails = (product: Product) => {
     setSelectedProduct(product);
     setIsModalOpen(true);
+  };
+
+  const handleKeyPress = (button: string) => {
+    if (button === '{bksp}') {
+      setSearchQuery(prev => prev.slice(0, -1));
+    } else if (button === '{space}') {
+      setSearchQuery(prev => prev + ' ');
+    } else if (button === '{enter}') {
+      setShowKeyboard(false);
+    } else if (button.length === 1) {
+      setSearchQuery(prev => prev + button);
+    }
   };
 
   return (
@@ -296,11 +311,14 @@ export function ProductsScreen() {
           >
             <div className="relative">
               <input
+                ref={searchInputRef}
                 type="text"
                 placeholder="🔍 Buscar produtos..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-white border-2 border-gray-300 focus:border-green-500 rounded-xl px-5 py-4 text-base md:text-lg font-medium text-gray-800 placeholder:text-gray-400 focus:outline-none shadow-md focus:shadow-lg transition-all"
+                onFocus={() => setShowKeyboard(true)}
+                readOnly
+                className="w-full bg-white border-2 border-gray-300 focus:border-green-500 rounded-xl px-5 py-4 text-base md:text-lg font-medium text-gray-800 placeholder:text-gray-400 focus:outline-none shadow-md focus:shadow-lg transition-all cursor-pointer"
               />
               {searchQuery && (
                 <motion.button
@@ -612,6 +630,16 @@ export function ProductsScreen() {
         onClose={() => setIsModalOpen(false)}
         onAddToCart={handleAddToCart}
       />
+
+      {/* Virtual Keyboard */}
+      {showKeyboard && (
+        <VirtualKeyboard
+          onKeyPress={handleKeyPress}
+          onClose={() => setShowKeyboard(false)}
+          inputName="search"
+          activeFieldLabel="Buscar produtos"
+        />
+      )}
     </div>
   );
 }
