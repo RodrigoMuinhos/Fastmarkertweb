@@ -115,7 +115,10 @@ export function HomeScreen() {
                     transition={{ delay: 0.4 + index * 0.1 }}
                     whileHover={{ y: -5, scale: 1.02 }}
                     className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all p-4 border-2 border-purple-200 cursor-pointer group relative overflow-hidden"
-                    onClick={() => handleQuickAdd(combo)}
+                    onClick={() => {
+                      setSelectedCategory('Combos');
+                      setCurrentScreen('products');
+                    }}
                   >
                     {/* Badge Combo */}
                     <div className="absolute top-3 right-3 bg-purple-500 text-white text-xs font-bold px-2 py-1 rounded-full">
@@ -152,7 +155,8 @@ export function HomeScreen() {
                         className="bg-green-500 hover:bg-green-600 text-white rounded-full p-2 shadow-lg"
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleQuickAdd(combo);
+                          setSelectedCategory('Combos');
+                          setCurrentScreen('products');
                         }}
                       >
                         <ShoppingCart className="w-4 h-4" />
@@ -194,7 +198,10 @@ export function HomeScreen() {
                     transition={{ delay: 0.6 + index * 0.05 }}
                     whileHover={{ y: -5 }}
                     className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all p-3 cursor-pointer group relative"
-                    onClick={() => handleQuickAdd(product)}
+                    onClick={() => {
+                      setSelectedCategory('Todos');
+                      setCurrentScreen('products');
+                    }}
                   >
                     {/* Badge Mais Vendido */}
                     <div className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
@@ -229,7 +236,8 @@ export function HomeScreen() {
                         className="bg-green-500 rounded-full p-1.5"
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleQuickAdd(product);
+                          setSelectedCategory('Todos');
+                          setCurrentScreen('products');
                         }}
                       >
                         <ShoppingCart className="w-3 h-3 text-white" />
