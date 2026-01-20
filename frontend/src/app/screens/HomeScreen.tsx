@@ -199,7 +199,7 @@ export function HomeScreen() {
                     whileHover={{ y: -5 }}
                     className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all p-3 cursor-pointer group relative"
                     onClick={() => {
-                      setSelectedCategory('Todos');
+                      setSelectedCategory(product.category);
                       setCurrentScreen('products');
                     }}
                   >
@@ -236,7 +236,7 @@ export function HomeScreen() {
                         className="bg-green-500 rounded-full p-1.5"
                         onClick={(e) => {
                           e.stopPropagation();
-                          setSelectedCategory('Todos');
+                          setSelectedCategory(product.category);
                           setCurrentScreen('products');
                         }}
                       >
